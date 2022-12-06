@@ -107,3 +107,52 @@ class CMEGlobexLivestockExchangeCalendar(CMEGlobexAgricultureExchangeCalendar):
         )]
 
 
+class CMEGlobexGrainExchangeCalendar(CMEGlobexAgricultureExchangeCalendar):
+    """
+    Exchange calendar for CME for Livestock products
+
+    https://www.cmegroup.com/trading/agricultural/livestock.html
+
+    GLOBEX Trading Times
+    https://www.cmegroup.com/markets/agriculture/livestock/live-cattle.contractSpecs.html
+    Monday - Friday: 8:30 a.m. - 1:05 p.m. CT
+    """
+    aliases = ['CMEGlobex_Wheat', 'CMEGlobex_Corn', 'CMEGlobex_Soybean']
+
+    regular_market_times = {
+        "market_open": ((None, time(8, 30)),),
+        "market_close": ((None, time(13, 5)),)
+    }
+
+    @property
+    def name(self):
+        return "CMEGlobex_Grain"
+
+    @property
+    def regular_holidays(self):
+        return AbstractHolidayCalendar(rules=[
+            USNewYearsDay,
+            USMartinLutherKingJrAfter1998,
+            USPresidentsDay,
+            GoodFriday,
+            USMemorialDay,
+            USIndependenceDay,
+            USLaborDay,
+            USThanksgivingDay,
+            Christmas,
+        ])
+
+    # @property
+    # def adhoc_holidays(self):
+    #     return USNationalDaysofMourning
+
+    @property
+    def special_closes(self):
+        return [(
+            time(12, 5),
+            AbstractHolidayCalendar(rules=[
+                USBlackFridayInOrAfter1993,
+                ChristmasEveBefore1993,
+                ChristmasEveInOrAfter1993,
+            ])
+        )]
