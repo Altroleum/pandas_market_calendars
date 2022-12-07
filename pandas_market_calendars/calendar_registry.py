@@ -6,6 +6,7 @@ from .exchange_calendar_cme import \
     CMEEquityExchangeCalendar, \
     CMEBondExchangeCalendar
 from .exchange_calendar_cme_globex_base import CMEGlobexBaseExchangeCalendar
+from .exchange_calendar_cme_globex_bbg import CMEGlobexBloombergCommodityIndexCalendar
 from .exchange_calendar_cme_globex_agriculture import CMEGlobexAgricultureExchangeCalendar
 from .exchange_calendar_cme_globex_fx import CMEGlobexFXExchangeCalendar
 from .exchange_calendar_cme_globex_energy_and_metals import CMEGlobexEnergyAndMetalsExchangeCalendar
